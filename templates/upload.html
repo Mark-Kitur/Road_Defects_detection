@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Road Defect Detection</title>
+</head>
+<body>
+    <h2>Upload an Image for Detection</h2>
+    <form action="/" method="post" enctype="multipart/form-data">
+        <input type="file" name="image" required>
+        <button type="submit">Upload</button>
+    </form>
+
+    {% if prediction_image %}
+        <h3>Prediction Result:</h3>
+        <img src="{{ url_for('display_image', filename=prediction_image) }}" alt="Predicted Image">
+    {% endif %}
+</body>
+</html>
