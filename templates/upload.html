@@ -4,17 +4,109 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Road Defect Detection</title>
+    <style>
+        /* Reset margin and padding */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: Arial, sans-serif;
+        }
+
+        /* Body styling */
+        body {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            min-height: 100vh;
+            background-color: #88EEEE;
+            color: #333;
+        }
+
+        /* Card container */
+        .container {
+            background: #FFFFFF;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            padding: 30px;
+            width: 90%;
+            max-width: 500px;
+            text-align: center;
+            border-radius: 10px;
+            animation: fadeIn 0.8s ease;
+        }
+
+        /* Heading styling */
+        h2 {
+            font-size: 1.8em;
+            color: #0db5ed;
+            margin-bottom: 20px;
+        }
+
+        h3 {
+            font-size: 1.4em;
+            font-weight: 400;
+            color: #555;
+            margin-top: 20px;
+            margin-bottom: 10px;
+        }
+
+        /* Input file styling */
+        input[type="file"] {
+            display: block;
+            margin: 20px auto;
+            padding: 10px;
+            background: #f0f8ff;
+            border: 1px solid #ddd;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+
+        /* Button styling */
+        button {
+            background-color: #0db5ed;
+            color: #FFFFFF;
+            border: none;
+            border-radius: 5px;
+            padding: 10px 20px;
+            font-size: 1em;
+            cursor: pointer;
+            transition: background-color 0.3s;
+            margin-top: 10px;
+        }
+
+        button:hover {
+            background-color: #0a8bbf;
+        }
+
+        /* Prediction image styling */
+        .prediction-image {
+            margin-top: 20px;
+            width: 100%;
+            max-width: 400px;
+            border: 3px solid #0db5ed;
+            border-radius: 10px;
+        }
+
+        /* Fade-in animation */
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(10px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+    </style>
 </head>
 <body>
-    <h2>Upload an Image for Detection</h2>
-    <form action="/" method="post" enctype="multipart/form-data">
-        <input type="file" name="image" required>
-        <button type="submit">Upload</button>
-    </form>
+    <div class="container">
+        <h2>Upload an Image for Detection</h2>
+        <form action="/" method="post" enctype="multipart/form-data">
+            <input type="file" name="image" accept="image/*" required>
+            <button type="submit">Detect Defect</button>
+        </form>
 
-    {% if prediction_image %}
-        <h3>Prediction Result:</h3>
-        <img src="{{ url_for('display_image', filename=prediction_image) }}" alt="Predicted Image">
-    {% endif %}
+        {% if prediction_image %}
+            <h3>Prediction Result:</h3>
+            <img src="{{ url_for('display_image', filename=prediction_image) }}" alt="Predicted Image" class="prediction-image">
+        {% endif %}
+    </div>
 </body>
 </html>
