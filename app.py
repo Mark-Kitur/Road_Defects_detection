@@ -4,7 +4,7 @@ import cv2  # Import OpenCV for image resizing
 from ultralytics import YOLO
 
 # Load YOLO model
-model = YOLO('best (1).pt')
+model = YOLO('last_m.pt')
 
 app = Flask(__name__, template_folder='templates')
 app.config['UPLOAD_FOLDER'] = './saved_images'
